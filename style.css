@@ -1,0 +1,291 @@
+:root {
+  --void: #0a0608;
+  --blood: #8b0a1a;
+  --pink: #ff2d95;
+  --violet: #8a2be2;
+  --bone: #e8dcc8;
+  --silver: #b9b9c4;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  color: var(--bone);
+  font-family: "Special Elite", "Courier New", monospace;
+  font-size: 1rem;
+  line-height: 1.6;
+  background-color: var(--void);
+  background-image:
+    linear-gradient(45deg, #130a10 25%, transparent 25%, transparent 75%, #130a10 75%),
+    linear-gradient(45deg, #130a10 25%, transparent 25%, transparent 75%, #130a10 75%);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+  cursor: crosshair;
+}
+
+/* marquee */
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  background: var(--blood);
+  border-bottom: 2px solid var(--pink);
+  padding: 4px 0;
+  font-size: 0.85rem;
+}
+.marquee .track { display: inline-flex; width: max-content; animation: scroll 40s linear infinite; }
+.marquee span { flex-shrink: 0; padding-right: 2rem; }
+@keyframes scroll { to { transform: translateX(-50%); } }
+
+/* hero */
+.hero { text-align: center; padding: 2.5rem 1rem 1.5rem; }
+.hero h1 {
+  margin: 0.5rem 0;
+  font-family: "Press Start 2P", "Courier New", monospace;
+  font-size: clamp(1.4rem, 7vw, 3rem);
+  font-weight: 400;
+  color: var(--pink);
+  text-shadow: 0 0 6px var(--pink), 0 0 22px var(--violet), 3px 3px 0 var(--blood);
+  animation: flicker 4s steps(1) infinite;
+}
+.hero .dash { color: var(--silver); }
+.mood, .tagline { margin: 0; color: var(--silver); }
+.mood b { color: var(--pink); }
+@keyframes flicker {
+  0%, 92%, 96%, 100% { opacity: 1; }
+  94%, 98% { opacity: 0.55; }
+}
+
+/* player */
+.player { display: flex; justify-content: center; gap: 6px; margin: 0.9rem 0 0; }
+.player button {
+  font-family: "Press Start 2P", "Courier New", monospace;
+  font-size: 0.65rem;
+  min-width: 52px;
+  padding: 8px 12px;
+  background: var(--silver);
+  color: var(--void);
+  border: 2px solid #fff;
+  border-right-color: #55505c;
+  border-bottom-color: #55505c;
+  cursor: pointer;
+}
+.player button:active {
+  border-color: #55505c #fff #fff #55505c;
+  transform: translate(1px, 1px);
+}
+
+/* layout */
+main { max-width: 680px; margin: 0 auto; padding: 0 1rem 2rem; }
+
+/* win98 window */
+.win {
+  margin-bottom: 1.5rem;
+  background: #1a1218;
+  border: 3px solid var(--silver);
+  border-right-color: #55505c;
+  border-bottom-color: #55505c;
+  box-shadow: 6px 6px 0 var(--blood);
+}
+.titlebar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 8px;
+  background: linear-gradient(90deg, var(--blood), var(--violet));
+  font-family: "Press Start 2P", "Courier New", monospace;
+  font-size: 0.7rem;
+}
+.btns { display: flex; gap: 4px; }
+.btns i {
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  background: var(--silver);
+  color: var(--void);
+  font-style: normal;
+  font-size: 0.65rem;
+  border: 2px solid #fff;
+  border-right-color: #55505c;
+  border-bottom-color: #55505c;
+}
+.body { padding: 1rem; }
+
+/* profile */
+.profile { display: flex; gap: 1rem; align-items: flex-start; }
+.photo {
+  flex: 0 0 120px;
+  width: 120px;
+  height: 150px;
+  overflow: hidden;
+  border: 3px double var(--pink);
+  background: var(--void);
+  box-shadow: 0 0 12px var(--violet);
+}
+.photo span { font-size: 3rem; }
+.photo small { color: var(--silver); }
+.photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px dashed #55505c; }
+th { color: var(--pink); width: 5.5rem; font-weight: 400; }
+
+/* hobi */
+.stickers { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.stickers li {
+  padding: 6px 14px;
+  border: 2px solid var(--pink);
+  border-radius: 999px;
+  background: var(--void);
+  box-shadow: 0 0 8px var(--pink);
+  transition: transform 0.15s;
+}
+.stickers li:hover { transform: rotate(-4deg) scale(1.06); }
+
+/* goal */
+.body p { margin: 0 0 0.5rem; }
+.body b { color: var(--pink); }
+.label { color: var(--silver); }
+.bar {
+  height: 24px;
+  border: 3px solid var(--silver);
+  border-right-color: #55505c;
+  border-bottom-color: #55505c;
+  background: var(--void);
+  padding: 2px;
+}
+.fill {
+  height: 100%;
+  width: 0;
+  background: repeating-linear-gradient(90deg, var(--pink) 0 10px, var(--violet) 10px 14px);
+  transition: width 1.6s steps(14);
+}
+.pct { text-align: right; margin-top: 4px; color: var(--pink); }
+.levels { margin: 0.5rem 0 0; padding-left: 1.2rem; color: var(--silver); }
+
+/* quote */
+.note {
+  margin: 2rem 0 1rem;
+  padding: 1.5rem 1.25rem;
+  background: var(--bone);
+  color: #2a1a22;
+  transform: rotate(-1.5deg);
+  box-shadow: 4px 4px 0 var(--blood);
+  clip-path: polygon(0 3%, 4% 0, 9% 3%, 14% 0, 20% 3%, 27% 0, 34% 3%, 41% 0, 48% 3%, 56% 0, 63% 3%, 71% 0, 78% 3%, 86% 0, 93% 3%, 100% 0, 100% 100%, 0 100%);
+}
+.note p { margin: 0; font-size: 1.15rem; text-align: center; }
+
+/* footer */
+footer {
+  text-align: center;
+  padding: 1.5rem 1rem 2.5rem;
+  border-top: 2px solid var(--blood);
+  color: var(--silver);
+  font-size: 0.85rem;
+}
+footer p { margin: 0.25rem 0; }
+.counter span {
+  padding: 2px 8px;
+  background: #000;
+  color: #3dff7a;
+  letter-spacing: 3px;
+  border: 2px inset var(--silver);
+}
+.uc { color: #ffd23d; animation: blink 1.2s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* mobile */
+@media (max-width: 520px) {
+  .profile { flex-direction: column; align-items: center; }
+  .photo { flex: none; width: 140px; }
+}
+
+/* a11y */
+:focus-visible { outline: 3px solid var(--pink); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  *:not(.track) { animation: none !important; transition: none !important; }
+}
+
+/* ===== stickers (tempel-tempel ala emo y2k) ===== */
+body { overflow-x: hidden; }
+.win, .hero { position: relative; }
+
+.sticker {
+  position: absolute;
+  width: var(--w, 70px);
+  height: auto;
+  z-index: 5;
+  pointer-events: none;
+  transform: rotate(var(--r, 0deg));
+  filter: drop-shadow(2px 2px 0 #000);
+}
+
+/* bingkai foto polaroid, tambahkan class "polaroid" ke foto */
+.polaroid { background: #fff; padding: 4px 4px 14px; }
+
+/* posisi, putaran (--r), ukuran (--w). Angka bebas diubah */
+.s1 { top: -26px;   right: -14px; --r: 14deg;  --w: 80px; }
+.s2 { bottom: -18px; left: -12px; --r: -16deg; --w: 64px; }
+.s3 { top: 40%;     right: -12px; --r: 8deg;   --w: 56px; z-index: 6; }
+.s4 { bottom: 8px;  right: 24px;  --r: -6deg;  --w: 70px; }
+.s5 { top: -18px;   left: 30%;    --r: -10deg; --w: 62px; }
+.s6 { top: 18px;    left: 6%;     --r: -12deg; --w: 64px; }
+.s7 { top: 28px;    right: 7%;    --r: 18deg;  --w: 60px; }
+
+@media (max-width: 520px) {
+  .sticker { width: calc(var(--w, 70px) * 0.7); }
+}
+
+
+/* ===== blend: stiker menyatu dengan background kotak-kotak ===== */
+/* screen: bagian hitam gambar jadi transparan, jadi ikut pola background */
+.blend {
+  mix-blend-mode: screen;
+  opacity: 0.85;
+  filter: brightness(var(--dim, 0.7)) contrast(1.15) saturate(0.9);
+}
+
+/* tepi foto jpg dibuat memudar supaya tidak kelihatan kotak */
+.fade {
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 45%, transparent 100%);
+  mask-image: radial-gradient(ellipse at center, #000 45%, transparent 100%);
+}
+
+/* sticker di belakang jendela. JANGAN kasih z-index ke .win, nanti tidak ngumpet */
+.behind { z-index: -1; }
+
+/* posisi sticker belakang: nongol dari sisi/atas/bawah jendela */
+.b1 { top: 8px;     left: -56px;  --r: -10deg; --w: 130px; }
+.b2 { bottom: 6px;  right: -50px; --r: 9deg;   --w: 120px; }
+.b3 { top: -28px;   right: 10%;   --r: 6deg;   --w: 110px; }
+.b4 { bottom: -24px; left: 12%;   --r: -5deg;  --w: 140px; }
+
+@media (max-width: 520px) {
+  .b1 { left: -14px;  top: -24px; }
+  .b2 { right: -14px; bottom: -24px; }
+}
+
+
+/* ===== v3: perbaikan posisi + spam sticker ===== */
+body { position: relative; }
+.win { margin-bottom: 2.5rem; }          /* celah antar jendela lebih lega */
+
+/* layer sticker di belakang seluruh halaman (isi: <div class="scatter">) */
+.scatter { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+
+/* foto jpg berlatar putih: dibalik supaya putih jadi transparan */
+.inv { filter: invert(1) brightness(var(--dim, 0.7)) contrast(1.15); }
+
+/* sticker depan: menggantung keluar kiri/kanan, di bawah, jauh dari tombol & teks */
+.fr1 { bottom: 10px; right: -44px; --r: 14deg;  --w: 60px; }
+.fr2 { bottom: 76px; right: -46px; --r: -10deg; --w: 56px; }
+.fl1 { bottom: 12px; left: -46px;  --r: -12deg; --w: 60px; }
+.fl2 { bottom: 78px; left: -44px;  --r: 9deg;   --w: 54px; }
